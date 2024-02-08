@@ -13,7 +13,7 @@ const frameMetadata = getFrameMetadata({
       target: 'https://www.google.com',
     },
     {
-      label: 'Redirect to pictures',
+      label: 'Pretty Pictures!',
       action: 'post_redirect',
     },
   ],
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1>zizzamia.xyz</h1>
+      <h1>Hello!</h1>
     </>
   );
 }

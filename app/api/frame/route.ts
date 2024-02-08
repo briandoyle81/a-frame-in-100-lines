@@ -9,6 +9,21 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const body: FrameRequest = await req.json();
   const { isValid, message } = await getFrameMessage(body, { neynarApiKey: 'NEYNAR_ONCHAIN_KIT' });
 
+  // export interface FrameValidationData {
+  //   button: number; // Number of the button clicked
+  //   following: boolean; // Indicates if the viewer clicking the frame follows the cast author
+  //   input: string; // Text input from the viewer typing in the frame
+  //   interactor: {
+  //     fid: number; // Viewer Farcaster ID
+  //     custody_address: string; // Viewer custody address
+  //     verified_accounts: string[]; // Viewer account addresses
+  //   };
+  //   liked: boolean; // Indicates if the viewer clicking the frame liked the cast
+  //   raw: NeynarFrameValidationInternalModel;
+  //   recasted: boolean; // Indicates if the viewer clicking the frame recasted the cast
+  //   valid: boolean; // Indicates if the frame is valid
+  // }
+
   if (isValid) {
     accountAddress = message.interactor.verified_accounts[0];
   }
