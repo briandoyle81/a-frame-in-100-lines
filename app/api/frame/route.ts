@@ -39,17 +39,31 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     );
   }
 
-  return new NextResponse(
-    getFrameHtmlResponse({
-      buttons: [
-        {
-          label: `🌲 Text: ${text}`,
-        },
-      ],
-      image: `${NEXT_PUBLIC_URL}/park-2.png`,
-      post_url: `${NEXT_PUBLIC_URL}/api/frame`,
-    }),
-  );
+  if (message?.following) {
+    return new NextResponse(
+      getFrameHtmlResponse({
+        buttons: [
+          {
+            label: `Thanks for following!`,
+          },
+        ],
+        image: `${NEXT_PUBLIC_URL}/park-2.png`,
+        // post_url: `${NEXT_PUBLIC_URL}/api/frame`,
+      }),
+    );
+  } else {
+    return new NextResponse(
+      getFrameHtmlResponse({
+        buttons: [
+          {
+            label: `Follow and try again!`,
+          },
+        ],
+        image: `${NEXT_PUBLIC_URL}/park-2.png`,
+        post_url: `${NEXT_PUBLIC_URL}/api/frame`,
+      }),
+    );
+  }
 }
 
 export async function POST(req: NextRequest): Promise<Response> {
